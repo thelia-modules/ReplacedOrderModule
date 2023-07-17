@@ -16,7 +16,7 @@ So you can delete the module after.
 Add it in your main thelia composer.json file
 
 ```
-composer require thelia/replaced-order-module-module:~1.0
+composer require thelia/replaced-order-module-module:~2.0
 ```
 
 ## Usage

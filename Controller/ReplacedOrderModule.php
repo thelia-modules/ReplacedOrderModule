@@ -2,30 +2,36 @@
 
 namespace ReplacedOrderModule\Controller;
 
+use ReplacedOrderModule\Form\ReplacedOrderModuleForm;
 use ReplacedOrderModule\Service\ReplacedOrderModuleService;
+use Symfony\Component\Routing\Annotation\Route;
 use Thelia\Controller\Admin\BaseAdminController;
 use Thelia\Core\Security\AccessManager;
 use Thelia\Core\Security\Resource\AdminResources;
+use Thelia\Core\Template\ParserContext;
 
+#[Route('/admin/module/ReplacedOrderModule', name: 'replaced_order_')]
 class ReplacedOrderModule extends BaseAdminController
 {
-    public function replaceOrderModule()
+    #[Route('/replacedordermodule', name: 'replace_order_module')]
+    public function replaceOrderModule(
+        ParserContext $parserContext,
+        ReplacedOrderModuleService $replacedOrderModuleService
+    )
     {
         if (null !== $response = $this->checkAuth([AdminResources::MODULE], ["CustomerTools"], AccessManager::UPDATE)) {
             return $response;
         }
 
-        $form = $this->createForm('replaced_order_module_form');
+        $form = $this->createForm(ReplacedOrderModuleForm::getName());
 
         try {
             $data = $this->validateForm($form)->getData();
 
-            /** @var ReplacedOrderModuleService $replacedOrderModuleService */
-            $replacedOrderModuleService = $this->getContainer()->get('action.replace.order.module.service');
-
             $module = $replacedOrderModuleService->getModule($data["modules"]);
 
             $replacedOrderModuleService->saveModule($module);
+
             $replacedOrderModuleService->updateOrder($module);
 
             return $this->generateSuccessRedirect($form);
@@ -35,7 +41,7 @@ class ReplacedOrderModule extends BaseAdminController
 
         $form->setErrorMessage($error_message);
 
-        $this->getParserContext()
+        $parserContext
             ->addForm($form)
             ->setGeneralError($error_message);
 

@@ -10,8 +10,6 @@ use Thelia\Model\OrderQuery;
 
 class ReplacedOrderModuleService
 {
-    const REPLACE_ORDER_MODULE = 'action.replace.order.module.service';
-
     /**
      * @return Module
      */
@@ -35,11 +33,11 @@ class ReplacedOrderModuleService
     }
 
     /**
-     * @param $module
+     * @param Module $module
      * @return void
      * @throws PropelException
      */
-    public function saveModule(Module $module)
+    public function saveModule(Module $module): void
     {
         $replacedModule = new ReplacedModule();
         $replacedModule->setCode($module->getCode());
@@ -49,11 +47,11 @@ class ReplacedOrderModuleService
     }
 
     /**
-     * @param $module
+     * @param Module $module
      * @return void
      * @throws PropelException
      */
-    public function updateOrder(Module $module)
+    public function updateOrder(Module $module): void
     {
         $orders = OrderQuery::create();
         $replacedOrderModule = $this->getReplacedOrderModule();

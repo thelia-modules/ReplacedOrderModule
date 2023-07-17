@@ -8,12 +8,6 @@
         <form name="replaced_order_module_form" class="ReplacedOrderModule\Form\ReplacedOrderModuleForm" />
     </forms>
 
-    <services>
-        <service id="action.replace.order.module.service" class="ReplacedOrderModule\Service\ReplacedOrderModuleService">
-            <argument type="service" id="event_dispatcher"/>
-        </service>
-    </services>
-
     <hooks>
         <hook id="replace.module.configuration.hook" class="ReplacedOrderModule\Hook\ConfigurationHook">
             <tag name="hook.event_listener" event="module.configuration" type="back" method="onModuleConfiguration" />
