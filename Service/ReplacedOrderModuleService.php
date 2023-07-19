@@ -11,12 +11,18 @@ use Thelia\Model\OrderQuery;
 class ReplacedOrderModuleService
 {
     /**
+     * return the ReplacedOrderModule or Selected Module
+     *
+     * @param string|null $code
      * @return Module
      */
-    public function getReplacedOrderModule(): Module
+    public function getReplacedOrderModule(string $code = null): Module
     {
-        return ModuleQuery::create()
-            ->findOneByCode('ReplacedOrderModule');
+        if ($code){
+            return ModuleQuery::create()->findOneByCode($code);
+        }
+
+        return ModuleQuery::create()->findOneByCode('ReplacedOrderModule');
     }
 
     /**
@@ -33,44 +39,55 @@ class ReplacedOrderModuleService
     }
 
     /**
+     * Add a line with all replaced Module
+     *
      * @param Module $module
      * @return void
      * @throws PropelException
      */
-    public function saveModule(Module $module): void
+    public function saveModule(Module $module, Module $module2 = null): void
     {
         $replacedModule = new ReplacedModule();
         $replacedModule->setCode($module->getCode());
         $replacedModule->setTitle($module->getTitle());
         $replacedModule->setCreatedAt(new \DateTime("now"));
+        $replacedModule->setNewModule($module2?->getCode());
         $replacedModule->save();
     }
 
     /**
+     * update order payment_id or delivery_id
+     *
      * @param Module $module
+     * @param Module|null $module2
      * @return void
      * @throws PropelException
      */
-    public function updateOrder(Module $module): void
+    public function updateOrder(Module $module, Module $module2 = null): void
     {
         $orders = OrderQuery::create();
-        $replacedOrderModule = $this->getReplacedOrderModule();
 
-        if ($module->getCategory() == 'payment') {
-            $orders->filterByPaymentModuleId($module->getId())
-                ->find();
-            foreach ($orders as $order) {
+        $replacedOrderModule = $this->getReplacedOrderModule($module2?->getCode());
+
+        if ($module->getCategory() == 'payment')
+        {
+            $orders->filterByPaymentModuleId($module->getId())->find();
+
+            foreach ($orders as $order)
+            {
                 $order->setPaymentModuleId($replacedOrderModule->getId());
                 $order->save();
             }
         }
 
-        if ($module->getCategory() == 'delivery') {
+        if ($module->getCategory() == 'delivery')
+        {
             $orders = OrderQuery::create()
                 ->filterByDeliveryModuleId($module->getId())
                 ->find();
 
-            foreach ($orders as $order) {
+            foreach ($orders as $order)
+            {
                 $order->setDeliveryModuleId($replacedOrderModule->getId());
                 $order->save();
             }

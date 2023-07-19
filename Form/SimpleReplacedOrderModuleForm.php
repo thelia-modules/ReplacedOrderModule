@@ -10,7 +10,7 @@ use Thelia\Form\BaseForm;
 use Thelia\Log\Tlog;
 use Thelia\Model\ModuleQuery;
 
-class ReplacedOrderModuleForm extends BaseForm
+class SimpleReplacedOrderModuleForm extends BaseForm
 {
     protected function buildForm()
     {
@@ -22,15 +22,7 @@ class ReplacedOrderModuleForm extends BaseForm
                     'required' => true,
                     'choices' => $this->initModulesList(),
                     'label' => Translator::getInstance()->trans('Replaced Module', [], ReplacedOrderModule::DOMAIN_NAME),
-                ])
-            ->add('modules2',
-                ChoiceType::class,
-                [
-                    'required' => true,
-                    'choices' => $this->initModulesList(),
-                    'label' => Translator::getInstance()->trans('New Module', [], ReplacedOrderModule::DOMAIN_NAME),
-                ])
-        ;
+                ]);
     }
 
     private function initModulesList(): array

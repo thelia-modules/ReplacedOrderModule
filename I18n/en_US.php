@@ -1,4 +1,6 @@
 <?php
+
 return array(
-    // 'an english string' => 'The displayed english string',
+    'New Module' => 'Nouveau Module',
+    'Replaced Module' => 'Module à Remplacer',
 );
