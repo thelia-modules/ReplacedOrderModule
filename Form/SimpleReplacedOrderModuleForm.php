@@ -16,7 +16,7 @@ class SimpleReplacedOrderModuleForm extends BaseForm
     {
         $this->initModulesList();
         $this->formBuilder
-            ->add('modules',
+            ->add('module',
                 ChoiceType::class,
                 [
                     'required' => true,
@@ -30,9 +30,9 @@ class SimpleReplacedOrderModuleForm extends BaseForm
         $choices = [];
 
         $modules = ModuleQuery::create()
-            ->filterByType(2)
+            ->filterByType(ReplacedOrderModule::DELIVERY_MODULE_TYPE)
             ->_or()
-            ->filterByType(3)
+            ->filterByType(ReplacedOrderModule::PAYMENT_MODULE_TYPE)
             ->orderByCode()
             ->find();
 

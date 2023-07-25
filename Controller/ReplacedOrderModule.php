@@ -29,8 +29,8 @@ class ReplacedOrderModule extends BaseAdminController
         try {
             $data = $this->validateForm($form)->getData();
 
-            $module = $replacedOrderModuleService->getModule($data["modules"]);
-            $module2 = $replacedOrderModuleService->getModule($data["modules2"]);
+            $module = $replacedOrderModuleService->getModule($data["module"]);
+            $module2 = $replacedOrderModuleService->getModule($data["newModule"]);
 
             $replacedOrderModuleService->saveModule($module, $module2);
 
@@ -38,14 +38,14 @@ class ReplacedOrderModule extends BaseAdminController
 
             return $this->generateSuccessRedirect($form);
         } catch (\Exception $e) {
-            $error_message = $e->getMessage();
+            $errorMessage = $e->getMessage();
         }
 
-        $form->setErrorMessage($error_message);
+        $form->setErrorMessage($errorMessage);
 
         $parserContext
             ->addForm($form)
-            ->setGeneralError($error_message);
+            ->setGeneralError($errorMessage);
 
         return $this->generateErrorRedirect($form);
     }
@@ -65,7 +65,7 @@ class ReplacedOrderModule extends BaseAdminController
         try {
             $data = $this->validateForm($form)->getData();
 
-            $module = $replacedOrderModuleService->getModule($data["modules"]);
+            $module = $replacedOrderModuleService->getModule($data["module"]);
 
             $replacedOrderModuleService->saveModule($module);
 
@@ -73,14 +73,14 @@ class ReplacedOrderModule extends BaseAdminController
 
             return $this->generateSuccessRedirect($form);
         } catch (\Exception $e) {
-            $error_message = $e->getMessage();
+            $errorMessage = $e->getMessage();
         }
 
-        $form->setErrorMessage($error_message);
+        $form->setErrorMessage($errorMessage);
 
         $parserContext
             ->addForm($form)
-            ->setGeneralError($error_message);
+            ->setGeneralError($errorMessage);
 
         return $this->generateErrorRedirect($form);
     }
