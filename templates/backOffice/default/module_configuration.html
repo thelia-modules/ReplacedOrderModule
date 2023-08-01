@@ -1,0 +1,86 @@
+<div class="general-block-decorator">
+    <div class="row">
+
+    <div class="col-md-12 title title-without-tabs">
+      {intl l='Simple Replaced Order Module' d='replacedordermodule.bo.default'}
+    </div>
+
+      <div class="col-md-12">
+          <div class="alert alert-info">{intl l='replaced the id of a the module by the id of ReplacedOrderModule' d='replacedordermodule.bo.default'}</div>
+      </div>
+
+    <div class="form-container">
+      <div class="col-md-12">
+        {form name="replacedordermodule_form_simple_replaced_order_module_form"}
+          <form method="POST" action="{url path="/admin/module/ReplacedOrderModule/simplereplacedordermodule"}" {form_enctype} >
+
+            {render_form_field field="success_url" value={url path='/admin/module/ReplacedOrderModule'}}
+            {render_form_field field="error_url" value={url path='/admin/module/ReplacedOrderModule'}}
+            {form_hidden_fields }
+
+            {if $form_error}
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="alert alert-danger">{$form_error_message}</div>
+                </div>
+              </div>
+            {/if}
+
+            <div class="col-md-4">
+              {render_form_field field='module'}
+            </div>
+            <div class="form-group col-md-4 ">
+              <button type="submit" class="btn btn-danger" >{intl l="Replace Module" d="replacedordermodule.bo.default"}</button>
+            </div>
+          </form>
+        {/form}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="general-block-decorator">
+    <div class="row">
+
+        <div class="col-md-12 title title-without-tabs">
+            {intl l='Replaced Order Module' d='replacedordermodule.bo.default'}
+        </div>
+
+        <div class="col-md-12">
+            <div class="alert alert-info">{intl l='replaced the id of a the module by the id of an other module' d='replacedordermodule.bo.default'}</div>
+        </div>
+        <div class="form-container">
+            <div class="col-md-12">
+                {form name="replacedordermodule_form_replaced_order_module_form"}
+                    <form method="POST" action="{url path="/admin/module/ReplacedOrderModule/replacedordermodule"}" {form_enctype} >
+
+                        {render_form_field field="success_url" value={url path='/admin/module/ReplacedOrderModule'}}
+                        {render_form_field field="error_url" value={url path='/admin/module/ReplacedOrderModule'}}
+                        {form_hidden_fields }
+
+                        {if $form_error}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-danger">{$form_error_message}</div>
+                                </div>
+                            </div>
+                        {/if}
+
+                        <div class="col-md-4">
+                            {render_form_field field='module'}
+                        </div>
+                        <div class="col-md-4">
+                            {render_form_field field='newModule'}
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <button type="submit" class="btn btn-danger" >{intl l="Replace Module" d="replacedordermodule.bo.default"}</button>
+                        </div>
+                    </form>
+                {/form}
+
+            </div>
+        </div>
+    </div>
+</div>
+
