@@ -9,6 +9,7 @@ use Thelia\Core\Translation\Translator;
 use Thelia\Form\BaseForm;
 use Thelia\Log\Tlog;
 use Thelia\Model\ModuleQuery;
+use Thelia\Module\BaseModule;
 
 class SimpleReplacedOrderModuleForm extends BaseForm
 {
@@ -30,9 +31,9 @@ class SimpleReplacedOrderModuleForm extends BaseForm
         $choices = [];
 
         $modules = ModuleQuery::create()
-            ->filterByType(ReplacedOrderModule::DELIVERY_MODULE_TYPE)
+            ->filterByType(BaseModule::DELIVERY_MODULE_TYPE)
             ->_or()
-            ->filterByType(ReplacedOrderModule::PAYMENT_MODULE_TYPE)
+            ->filterByType(BaseModule::PAYMENT_MODULE_TYPE)
             ->orderByCode()
             ->find();
 

@@ -20,9 +20,6 @@ class ReplacedOrderModule extends BaseModule
     /** @var string */
     const DOMAIN_NAME = 'replacedordermodule';
 
-    const DELIVERY_MODULE_TYPE = 2;
-    const PAYMENT_MODULE_TYPE = 3;
-
     /*
      * You may now override BaseModuleInterface methods, such as:
      * install, destroy, preActivation, postActivation, preDeactivation, postDeactivation
