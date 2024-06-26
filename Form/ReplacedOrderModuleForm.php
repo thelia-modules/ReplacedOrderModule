@@ -13,19 +13,17 @@ use Thelia\Module\BaseModule;
 
 class ReplacedOrderModuleForm extends BaseForm
 {
-    protected function buildForm()
+    protected function buildForm(): void
     {
         $this->initModulesList();
         $this->formBuilder
-            ->add('module',
-                ChoiceType::class,
+            ->add('module', ChoiceType::class,
                 [
                     'required' => true,
                     'choices' => $this->initModulesList(),
                     'label' => Translator::getInstance()->trans('Replaced Module', [], ReplacedOrderModule::DOMAIN_NAME),
                 ])
-            ->add('newModule',
-                ChoiceType::class,
+            ->add('newModule', ChoiceType::class,
                 [
                     'required' => true,
                     'choices' => $this->initModulesList(),

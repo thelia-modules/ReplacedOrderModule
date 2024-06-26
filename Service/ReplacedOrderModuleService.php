@@ -2,6 +2,7 @@
 
 namespace ReplacedOrderModule\Service;
 
+use DateTime;
 use Propel\Runtime\Exception\PropelException;
 use ReplacedOrderModule\Model\ReplacedModule;
 use Thelia\Model\Module;
@@ -39,9 +40,10 @@ class ReplacedOrderModuleService
     }
 
     /**
-     * Add a line with all replaced Module
+     * Add a line with all replaced Modules
      *
      * @param Module $module
+     * @param Module|null $module2
      * @return void
      * @throws PropelException
      */
@@ -50,7 +52,7 @@ class ReplacedOrderModuleService
         $replacedModule = new ReplacedModule();
         $replacedModule->setCode($module->getCode());
         $replacedModule->setTitle($module->getTitle());
-        $replacedModule->setCreatedAt(new \DateTime("now"));
+        $replacedModule->setCreatedAt(new DateTime("now"));
         $replacedModule->setNewModule($module2?->getCode());
         $replacedModule->save();
     }
@@ -69,7 +71,7 @@ class ReplacedOrderModuleService
 
         $replacedOrderModule = $this->getReplacedOrderModule($module2?->getCode());
 
-        if ($module->getCategory() == 'payment')
+        if ($module->getCategory() === 'payment')
         {
             $orders->filterByPaymentModuleId($module->getId())->find();
 
@@ -80,7 +82,7 @@ class ReplacedOrderModuleService
             }
         }
 
-        if ($module->getCategory() == 'delivery')
+        if ($module->getCategory() === 'delivery')
         {
             $orders = OrderQuery::create()
                 ->filterByDeliveryModuleId($module->getId())

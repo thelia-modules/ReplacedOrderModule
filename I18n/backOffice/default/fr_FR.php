@@ -1,9 +1,9 @@
 <?php
 
 return array(
-    'Replace Module' => 'Module Remplacé',
-    'Replaced Order Module' => 'Remplacement de module',
-    'Simple Replaced Order Module' => 'Remplacement de module simple',
-    'replaced the id of a the module by the id of ReplacedOrderModule' => 'remplace l\'id d\'un module par celui du module ReplacedOrderModule',
-    'replaced the id of a the module by the id of an other module' => 'remplace l\'id d\'un module par celui du module sélectionné',
+    'Replace Module' => 'Remplacer le Module',
+    'Replaced Order Module' => 'Remplacer un module par un autre module',
+    'Simple Replaced Order Module' => 'Remplacer un module par Replaced Order Module',
+    'replaced the id of a the module by the id of ReplacedOrderModule' => 'Remplace l\'id d\'un module par l\'id du module ReplacedOrderModule',
+    'replaced the id of a the module by the id of an other module' => 'Remplace l\'id d\'un module par l\'id du module sélectionné',
 );
