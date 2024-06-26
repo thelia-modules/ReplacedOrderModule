@@ -13,6 +13,7 @@
 namespace ReplacedOrderModule;
 
 use Propel\Runtime\Connection\ConnectionInterface;
+use ReplacedOrderModule\Model\ReplacedModuleQuery;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
 use Symfony\Component\Finder\Finder;
 use Thelia\Install\Database;
@@ -44,6 +45,15 @@ class ReplacedOrderModule extends BaseModule
             if (version_compare($currentVersion, $file->getBasename('.sql'), '<')) {
                 $database->insertSql(null, [$file->getPathname()]);
             }
+        }
+    }
+
+    public function postActivation(ConnectionInterface $con = null): void
+    {
+        if (!self::getConfigValue('is_initialized')) {
+            $database = new Database($con);
+            $database->insertSql(null, [__DIR__ . "/Config/TheliaMain.sql"]);
+            self::setConfigValue('is_initialized', 1);
         }
     }
 
