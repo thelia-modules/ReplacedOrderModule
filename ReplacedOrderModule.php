@@ -13,10 +13,9 @@
 namespace ReplacedOrderModule;
 
 use Propel\Runtime\Connection\ConnectionInterface;
-use ReplacedOrderModule\Model\ReplacedModuleQuery;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
 use Symfony\Component\Finder\Finder;
-use Thelia\Install\Database;
+use Thelia\Core\Install\Database;
 use Thelia\Module\BaseModule;
 
 class ReplacedOrderModule extends BaseModule

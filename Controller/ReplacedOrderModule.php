@@ -5,6 +5,8 @@ namespace ReplacedOrderModule\Controller;
 use ReplacedOrderModule\Form\ReplacedOrderModuleForm;
 use ReplacedOrderModule\Form\SimpleReplacedOrderModuleForm;
 use ReplacedOrderModule\Service\ReplacedOrderModuleService;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Thelia\Controller\Admin\BaseAdminController;
 use Thelia\Core\Security\AccessManager;
@@ -18,7 +20,7 @@ class ReplacedOrderModule extends BaseAdminController
     public function replaceOrderModule(
         ParserContext $parserContext,
         ReplacedOrderModuleService $replacedOrderModuleService
-    )
+    ): RedirectResponse|Response|null
     {
         if (null !== $response = $this->checkAuth([AdminResources::MODULE], ["CustomerTools"], AccessManager::UPDATE)) {
             return $response;
@@ -54,7 +56,7 @@ class ReplacedOrderModule extends BaseAdminController
     public function simpleReplaceOrderModule(
         ParserContext $parserContext,
         ReplacedOrderModuleService $replacedOrderModuleService
-    )
+    ): RedirectResponse|Response|null
     {
         if (null !== $response = $this->checkAuth([AdminResources::MODULE], ["CustomerTools"], AccessManager::UPDATE)) {
             return $response;
