@@ -1,0 +1,74 @@
+{# Simple replace: reset module to ReplacedOrderModule #}
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="card-title mb-0">{{ 'Simple Replaced Order Module'|trans({}, 'replacedordermodule.bo.default') }}</h5>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-info">
+            {{ 'replaced the id of a the module by the id of ReplacedOrderModule'|trans({}, 'replacedordermodule.bo.default') }}
+        </div>
+
+        {{ form_start(simpleForm, {action: path('replaced_order_simple_replace_order_module'), method: 'POST'}) }}
+
+        {# success_url and error_url with default redirect back to config page #}
+        <input type="hidden" name="{{ simpleForm.vars.full_name }}[success_url]" value="{{ path('admin.module.configure', {module_code: 'ReplacedOrderModule'}) }}">
+        <input type="hidden" name="{{ simpleForm.vars.full_name }}[error_url]" value="{{ path('admin.module.configure', {module_code: 'ReplacedOrderModule'}) }}">
+        {% do simpleForm.success_url.setRendered %}
+        {% do simpleForm.error_url.setRendered %}
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                {{ form_label(simpleForm.module) }}
+                {{ form_widget(simpleForm.module, {attr: {class: 'form-select' ~ (simpleForm.module.vars.errors|length ? ' is-invalid' : '')}}) }}
+                {{ form_errors(simpleForm.module) }}
+            </div>
+            <div class="col-md-4 mb-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-danger">
+                    {{ 'Replace Module'|trans({}, 'replacedordermodule.bo.default') }}
+                </button>
+            </div>
+        </div>
+
+        {{ form_end(simpleForm) }}
+    </div>
+</div>
+
+{# Full replace: replace one module by another #}
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="card-title mb-0">{{ 'Replaced Order Module'|trans({}, 'replacedordermodule.bo.default') }}</h5>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-info">
+            {{ 'replaced the id of a the module by the id of an other module'|trans({}, 'replacedordermodule.bo.default') }}
+        </div>
+
+        {{ form_start(replacedForm, {action: path('replaced_order_replace_order_module'), method: 'POST'}) }}
+
+        {# success_url and error_url with default redirect back to config page #}
+        <input type="hidden" name="{{ replacedForm.vars.full_name }}[success_url]" value="{{ path('admin.module.configure', {module_code: 'ReplacedOrderModule'}) }}">
+        <input type="hidden" name="{{ replacedForm.vars.full_name }}[error_url]" value="{{ path('admin.module.configure', {module_code: 'ReplacedOrderModule'}) }}">
+        {% do replacedForm.success_url.setRendered %}
+        {% do replacedForm.error_url.setRendered %}
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                {{ form_label(replacedForm.module) }}
+                {{ form_widget(replacedForm.module, {attr: {class: 'form-select' ~ (replacedForm.module.vars.errors|length ? ' is-invalid' : '')}}) }}
+                {{ form_errors(replacedForm.module) }}
+            </div>
+            <div class="col-md-4 mb-3">
+                {{ form_label(replacedForm.newModule) }}
+                {{ form_widget(replacedForm.newModule, {attr: {class: 'form-select' ~ (replacedForm.newModule.vars.errors|length ? ' is-invalid' : '')}}) }}
+                {{ form_errors(replacedForm.newModule) }}
+            </div>
+            <div class="col-md-4 mb-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-danger">
+                    {{ 'Replace Module'|trans({}, 'replacedordermodule.bo.default') }}
+                </button>
+            </div>
+        </div>
+
+        {{ form_end(replacedForm) }}
+    </div>
+</div>
