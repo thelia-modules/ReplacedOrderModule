@@ -17,7 +17,7 @@ class ReplacedOrderModuleService
      * @param string|null $code
      * @return Module
      */
-    public function getReplacedOrderModule(string $code = null): Module
+    public function getReplacedOrderModule(?string $code = null): Module
     {
         if ($code){
             return ModuleQuery::create()->findOneByCode($code);
@@ -47,7 +47,7 @@ class ReplacedOrderModuleService
      * @return void
      * @throws PropelException
      */
-    public function saveModule(Module $module, Module $module2 = null): void
+    public function saveModule(Module $module, ?Module $module2 = null): void
     {
         $replacedModule = new ReplacedModule();
         $replacedModule->setCode($module->getCode());
@@ -65,7 +65,7 @@ class ReplacedOrderModuleService
      * @return void
      * @throws PropelException
      */
-    public function updateOrder(Module $module, Module $module2 = null): void
+    public function updateOrder(Module $module, ?Module $module2 = null): void
     {
         $orders = OrderQuery::create();
 
