@@ -16,7 +16,7 @@ use Thelia\Core\Template\ParserContext;
 #[Route('/admin/module/ReplacedOrderModule', name: 'replaced_order_')]
 class ReplacedOrderModule extends BaseAdminController
 {
-    #[Route('/replacedordermodule', name: 'replace_order_module')]
+    #[Route('/replacedordermodule', name: 'replace_order_module', methods: ['POST'])]
     public function replaceOrderModule(
         ParserContext $parserContext,
         ReplacedOrderModuleService $replacedOrderModuleService
@@ -52,7 +52,7 @@ class ReplacedOrderModule extends BaseAdminController
         return $this->generateErrorRedirect($form);
     }
 
-    #[Route('/simplereplacedordermodule', name: 'simple_replace_order_module')]
+    #[Route('/simplereplacedordermodule', name: 'simple_replace_order_module', methods: ['POST'])]
     public function simpleReplaceOrderModule(
         ParserContext $parserContext,
         ReplacedOrderModuleService $replacedOrderModuleService
